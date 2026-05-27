@@ -8,12 +8,15 @@ html,body {
 body {
   background-color: #F0EBE1;
   color: #273A58;
+  font-family: var(--font-instrument-serif);
 }
 
 @theme{
   --font-instrument-serif: 'Instrument Serif', serif;
   --font-news-cycle: 'News Cycle', sans-serif;
   --font-archivo: 'Archivo', sans-serif;
+  --font-playfair-display: 'Playfair Display', serif;
+  --font-color: #273A58;
 }
 
 @layer utilities {
