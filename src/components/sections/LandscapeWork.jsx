@@ -21,11 +21,16 @@ const handlePrev = () => {
     
 
     return (
-<section id="landscape-work" className="min-h-screen max-w-5xl mx-auto px-6 grid grid-cols-12 auto-rows-auto gap-4 py-20 items-center">
-    <div className="col-span-12 grid grid-cols-subgrid gap-y-4">
+<section id="landscape-work" className="snap-start min-h-screen max-w-5xl mx-auto px-6 grid grid-cols-12 auto-rows-auto gap-4 py-20 items-center">
+    <div className="col-span-12 grid grid-cols-subgrid">
         
         {/* Project Meta Information */}
         {/* Fixed height ensures titles (single vs multi-line) don't push content down */}
+        <p className="text-md text-color/70 font-news-cycle col-span-12">
+                        <span className="text-sm text-color/50 block">
+                            <span className="font-semibold text-color">{activeProject.client}</span>
+                        </span>
+                    </p>
         <h2 className="col-span-12 text-3xl text-center xl:text-left h-10 flex items-center">
             {activeProject.title}
         </h2>
@@ -33,17 +38,12 @@ const handlePrev = () => {
         {/* Enforced min-height or fixed height here keeps the text area identical. 
             Adjust h-24 (6rem) or h-20 based on your longest snippet. 
             Added line-clamp-3 as a safety net to prevent overflow. */}
-        <p className="col-span-12 md:col-span-6 text-md text-color/70 font-news-cycle text-justify overflow-hidden">
+        <p className="col-span-12 md:col-span-6 text-md text-color/70 font-news-cycle text-justify overflow-hidden py-4">
             {activeProject.snippet}
         </p>
         
         {/* Matching the height/min-height of the sibling snippet column (h-24) 
             keeps both columns in the CSS grid aligned perfectly */}
-        <p className="col-span-12 md:col-span-6 text-md text-color/10 font-news-cycle pt-1">
-            <span className="text-sm text-color/50 -translate-y-1 block">
-                project for: <span className="font-semibold text-color">{activeProject.client}</span>
-            </span>
-        </p>
         
         {/* Carousel Container */}
         <div className="col-span-12 mt-4">

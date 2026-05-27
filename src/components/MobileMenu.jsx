@@ -12,19 +12,19 @@ export default function MobileMenu({ menuOpen, setMenuOpen }) {
                 X
             </button>
 
-            <a href="#landscape"
+            <a href="#landscape-work"
                 onClick={() => setMenuOpen(false)}
                 className={`text-2xl text-zinc-500 my-4 transform transition-transform duration-300
                 ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 tanslate-y-5"}`}>
                 01 / Landscape Work
             </a>
-            <a href="#portrait" 
+            <a href="#reels-work" 
                 onClick={() => setMenuOpen(false)}
                 className={`text-2xl text-zinc-500 my-4 transform transition-transform duration-300
                 ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 tanslate-y-5"}`}>
                 02 / Portrait Work
             </a>
-            <a href="#stills" 
+            <a href="#stills-work" 
                 onClick={() => setMenuOpen(false)}
                 className={`text-2xl text-zinc-500 my-4 transform transition-transform duration-300
                 ${menuOpen ? "opacity-100 translate-y-0" : "opacity-0 tanslate-y-5"}`}>

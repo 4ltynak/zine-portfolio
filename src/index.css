@@ -3,6 +3,7 @@
 html,body {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -11,6 +12,16 @@ body {
   font-family: var(--font-instrument-serif);
 }
 
+.slider-container{
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+.slide-section {
+  height: 100vh;            /* Each slide fills the screen */
+  scroll-snap-align: start; /* Snap to the top of the section */
+}
 @theme{
   --font-instrument-serif: 'Instrument Serif', serif;
   --font-news-cycle: 'News Cycle', sans-serif;
@@ -33,3 +44,4 @@ body {
     animation: loading 0.8s ease infinite;
   }
 }
+

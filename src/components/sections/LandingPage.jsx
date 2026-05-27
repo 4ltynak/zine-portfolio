@@ -1,6 +1,6 @@
 export default function LandingPage () {
     return (
-        <div className="relative w-full h-screen overflow-hidden flex flex-col justify-between p-12 select-none">
+      <div id="landing" className="snap-start relative w-full h-screen overflow-hidden flex flex-col justify-between p-12 select-none">
       {/* Top spacer to balance the layout and keep the hero perfectly centered */}
       <div className="h-12 aria-hidden" />
 

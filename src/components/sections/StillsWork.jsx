@@ -3,26 +3,22 @@ import stills from '../../assets/photos.json';
 export default function StillsWork() {
     console.log(stills);
     return (
-        <section id="stills-work" className="min-h-screen max-w-5xl mx-auto px-6 grid grid-cols-12 auto-rows-auto gap-4 py-20 items-center">
+        <section id="stills-work" className="snap-start min-h-screen max-w-5xl mx-auto px-6 grid grid-cols-12 auto-rows-auto gap-4 py-20 items-center">
     
-    {/* The parent div is a 12-column subgrid that only takes up the vertical space it needs */}
-    <div className="col-span-12 grid grid-cols-2 gap-y-4">
+    <div className="col-span-12 grid grid-cols-2 lg:grid-cols-12 gap-y-4">
         
         <h2 className="col-span-12 text-3xl text-center xl:text-left font-bold">
             Stills
         </h2>
         
-{/*         <p className="col-span-12 md:col-span-6 text-md text-gray-600 font-news-cycle text-justify">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec efficitur eros vel augue vehicula tempus. Sed id pellentesque arcu.
-        </p> */}
-        
-        <div class="flex items-center col-span-12 flex-col gap-y-8">
+        <div class="col-span-12 grid grid-cols-12 w-full gap-y-8 lg:gap-12">
             {stills.map((photo, index) => (
-                <div key={index} className="overflow-hidden col-span-2 rounded-lg shadow-lg">
+                <div key={index} className="overflow-hidden col-span-12 lg:col-span-6 rounded-lg shadow-lg">
                     <img src={photo.url} alt={photo.title} className="w-full h-full object-cover" />
                 </div>
             ))}
         </div>
+
         {/* <div className="col-span-12 mt-4">
             <div id="custom-controls-gallery" className="relative w-full" data-carousel="static">
                 <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
@@ -49,9 +45,15 @@ export default function StillsWork() {
                 </div>
             </div>
         </div> */}
-    <p className="col-span-12 text-md text-gray-400 font-news-cycle text-center mt-8">
+        <div className="col-span-12 mt-4">
+            <p class="text-body">Track work across the enterprise through an open, collaborative platform. Link issues across Jira and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.</p>
+<hr class="h-px my-8 bg-neutral-quaternary border-0"/>
+<p class="text-body">Deliver great service experiences fast - without the complexity of traditional ITSM solutions.Accelerate critical development work, eliminate toil, and deploy changes with ease, with a complete audit trail for every change.</p>
+</div>
+        
+        <a href="#landing" className="col-span-12 text-md text-gray-400 font-news-cycle text-center mt-8">
             Back to Top
-    </p>
+    </a>
     </div>
 </section>
     )

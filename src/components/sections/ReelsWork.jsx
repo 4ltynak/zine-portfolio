@@ -21,24 +21,23 @@ export default function ReelsWork() {
         
     
         return (
-        <section id="reels-work" className="min-h-screen max-w-5xl mx-auto px-6">
+        <section id="reels-work" className="snap-start min-h-screen max-w-5xl mx-auto px-6">
             <div className="grid grid-cols-12 auto-rows-auto gap-4 py-20 items-center">
         
             {/* Text Section: Properly bounded inside 6 columns on desktop, stacks on mobile */}
-                <div className="col-span-12 md:col-span-6 flex flex-col gap-y-4 justify-center min-w-0">
+                <div className="col-span-12 md:col-span-6 flex flex-col justify-center min-w-0">
+                    <p className="text-md text-color/70 font-news-cycle">
+                        <span className="text-sm text-color/50 block">
+                            <span className="font-semibold text-color">{activeProject.client}</span>
+                        </span>
+                    </p>
                     <h2 className="text-3xl text-center md:text-left h-10 flex items-center">
                         {activeProject.title}
                     </h2>
                     
                     {/* The paragraph will now wrap beautifully within its half of the screen */}
-                    <p className="text-md text-color/70 font-news-cycle text-left h-24 overflow-hidden">
+                    <p className="text-md text-color/70 font-news-cycle text-left h-24 overflow-hidden my-4">
                         {activeProject.snippet}
-                    </p>
-                    
-                    <p className="text-md text-color/10 font-news-cycle">
-                        <span className="text-sm text-color/50 block">
-                            project for: <span className="font-semibold text-color">{activeProject.client}</span>
-                        </span>
                     </p>
                     <div className="col-span-12 mt-4">
             <div id="custom-controls-gallery" className="relative w-full" data-carousel="static">

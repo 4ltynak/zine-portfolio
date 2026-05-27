@@ -7,6 +7,8 @@ import MobileMenu from './components/MobileMenu.jsx';
 import LandscapeWork from './components/sections/LandscapeWork.jsx';
 import ReelsWork from './components/sections/ReelsWork.jsx';
 import StillsWork from './components/sections/StillsWork.jsx';
+import Footer from './components/Footer.jsx';
+
 function App () {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,14 +16,16 @@ function App () {
   return (
     <>
     {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}{" "}
-      <div className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+    <div className="h-screen w-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
     <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     <LandingPage />
     <LandscapeWork />
     <ReelsWork />
     <StillsWork />
+    
     </div>
+    <Footer />
     </>
     
   )
