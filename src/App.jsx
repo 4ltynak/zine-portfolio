@@ -21,9 +21,8 @@ function App () {
     <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     <LandingPage />
     <LandscapeWork />
-{/*         <ReelsWork />
-    <StillsWork /> */}
-    
+    <ReelsWork />
+    <StillsWork />
     </div>
     </>
     

@@ -28,7 +28,7 @@ export const myProjects =[
   },
   {
     "id": "6657b641-8566-421c-b05e-c5808bed495f",
-    "title": "Ask an ID",
+    "title": "Ask an Interior Designer",
     "media_type": "reel",
     "url": "https://lhpwviumtempoiroqkyn.supabase.co/storage/v1/object/sign/Portfolio%20Assets/reels/Social%20Content%20Series%20_%20Ask%20an%20Interior%20Designer%20for%206amspaces.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV82N2E0OTlmMy05NTYwLTQ3ZGItYWE0MS03MGY1NmMwODRkMDEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQb3J0Zm9saW8gQXNzZXRzL3JlZWxzL1NvY2lhbCBDb250ZW50IFNlcmllcyBfIEFzayBhbiBJbnRlcmlvciBEZXNpZ25lciBmb3IgNmFtc3BhY2VzLm1wNCIsImlhdCI6MTc3OTU2MDM5NCwiZXhwIjoxODExMDk2Mzk0fQ.wgyyVkLvi5Z_TnnF6zJVZnsib60Glmk68-JDnRlt_ds",
     "tags": "[\"social engagement\",\"editing\"]",
@@ -41,7 +41,7 @@ export const myProjects =[
     "media_type": "reel",
     "url": "https://lhpwviumtempoiroqkyn.supabase.co/storage/v1/object/sign/Portfolio%20Assets/reels/Interior%20Showcase%20Tcw.mp4?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV82N2E0OTlmMy05NTYwLTQ3ZGItYWE0MS03MGY1NmMwODRkMDEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJQb3J0Zm9saW8gQXNzZXRzL3JlZWxzL0ludGVyaW9yIFNob3djYXNlIFRjdy5tcDQiLCJpYXQiOjE3Nzk2MTQxOTYsImV4cCI6MTgxMTE1MDE5Nn0.oeqA0Q67lSgNihv1YndGomJf96aaw71zXgMtWpAOgvQ",
     "tags": "[\"colour grading\",\"copywriting\"]",
-    "snippet": "A cinematic vertical showcase unveiling a newly finished project. The edit highlights the stark beauty of industrial design, balancing textured concrete elements with dramatic vertical space and an open loft layout flowing into outside nature.",
+    "snippet": "A cinematic vertical showcase of industrial design, blending textured concrete, dramatic loft spaces, and natural surroundings.",
     "client": "The Carpenter's Workshop"
   },
   {
