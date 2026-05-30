@@ -21,7 +21,7 @@ export default function ReelsWork() {
     };
         
     
-    return (
+        return (
             <DesktopReels reelsProjects={reelsProjects} />
         
     )

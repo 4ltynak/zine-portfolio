@@ -16,16 +16,15 @@ function App () {
   return (
     <>
     {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}{" "}
-    <div className="h-screen w-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+    <div className="h-screen w-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth grid grid-cols-12 auto-rows-[100vh]">
     <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     <LandingPage />
     <LandscapeWork />
-    <ReelsWork />
-    <StillsWork />
+{/*         <ReelsWork />
+    <StillsWork /> */}
     
     </div>
-    <Footer />
     </>
     
   )

@@ -28,6 +28,7 @@ body {
   --font-archivo: 'Archivo', sans-serif;
   --font-playfair-display: 'Playfair Display', serif;
   --font-color: #273A58;
+  --color-background: #F0EBE1;
 }
 
 @layer utilities {

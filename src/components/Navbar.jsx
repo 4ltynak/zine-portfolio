@@ -10,7 +10,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
                 <div className="flex items-center h-16 justify-between">
                     <a className="font-instrument-serif text-3xl" href="#home">MW</a>
                 </div>
-                <div className=" h-5 relative cursor-pointer z-40" onClick={() => setMenuOpen(prev => !prev)}>
+                <div className=" h-5 relative cursor-pointer z-40 lg:hidden" onClick={() => setMenuOpen(prev => !prev)}>
                     &#9776;
                 </div>
             </div>
