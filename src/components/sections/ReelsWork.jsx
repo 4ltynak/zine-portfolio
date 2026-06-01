@@ -49,23 +49,34 @@ className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflo
         </a>
     </div>
 
-    {/* TEXT CONTENT */}
-    <div className="col-span-12 grid gap-2 lg:col-span-3 lg:col-start-3 lg:row-start-3 text-md text-color/70 font-news-cycle self-start">
-        <p className="font-semibold text-color">{activeProject.client || ""}</p>
-        <h2 className="text-3xl xl:text-left h-10 flex items-center font-instrument-serif">
-            {activeProject.title ? activeProject.title.toUpperCase() : ""}
-        </h2>
-    </div>
-    <div className="col-span-12 lg:col-span-4 lg:col-start-7 lg:row-start-3 self-start">
-        <p className="text-md text-color/70 font-news-cycle text-justify overflow-hidden lg:leading-tight">
-            {activeProject.snippet || ""}
-        </p>
-    </div>
+{/* First Block: Client & Title */}
+{/* Added @container so fluid typography inside can measure this exact element's width */}
+<div className="@container col-span-10 col-start-2 row-start-2 lg:col-span-3 lg:col-start-3 lg:row-start-3 lg:grid gap-0.5 text-md text-color/70 font-news-cycle self-start">
+    
+    {/* 1. Added leading-none here to kill the invisible bottom padding of this text */}
+    <p className="font-semibold text-color leading-tight">
+        {activeProject.client || ""}
+    </p>
+    
+    {/* 2. Added -mt-1.5 to pull it up on mobile, then lg:mt-0 to undo it when the desktop grid kicks in */}
+    <h2 className="text-[clamp(1.5rem,6cqw,2.5rem)] lg:text-3xl xl:text-left min-h-[40px] flex items-center font-instrument-serif leading-none -mt-1.5 lg:mt-0">
+        {activeProject.title ? activeProject.title.toUpperCase() : ""}
+    </h2>
+    
+</div>
+
+{/* Second Block: Project Description Snippet */}
+{/* Cleaned up duplicate lg:col-span utilities */}
+<div className="col-span-10 col-start-2 row-start-3 lg:col-span-4 lg:col-start-7 lg:row-start-3 self-start">
+    <p className="-mt-4 lg:mt-0 text-md text-color/70 font-news-cycle text-justify overflow-hidden leading-4 lg:leading-tight">
+        {activeProject.snippet || ""}
+    </p>
+</div>
 
     {/* GALLERY AREA */}
     <div 
         id="custom-controls-gallery" 
-        className="col-start-3 col-span-8 row-start-4 row-span-7 w-full h-full relative" 
+        className="col-start-2 col-span-10 lg:col-start-3 lg:col-span-8 row-start-4 row-span-7 w-full h-full relative" 
         data-carousel="static"
     >
         {/* DESKTOP: 3 Side-by-Side */}
@@ -120,8 +131,8 @@ className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflo
     </div>
 
     {/* COMBINED CONTROLS AND BORDER CONTAINER */}
-    <div className="col-start-3 col-span-8 row-start-11 w-full flex flex-col pt-4 border-t border-color/20 z-10">
-        <div className="flex justify-between items-center w-full">
+    <div className="-mt-4 lg:-mt-0 col-start-2 col-span-10 lg:col-start-3 lg:col-span-8 row-start-11 w-full flex flex-col pt-4 border-t border-color/20 z-10">
+        <div className="flex justify-between items-center w-full -mt-2 lg:-mt-0">
             <button 
                 className="text-lg text-color/70 font-news-cycle text-left cursor-pointer hover:underline" 
                 onClick={handlePrev}

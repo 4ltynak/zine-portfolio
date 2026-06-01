@@ -6,7 +6,7 @@ export default function Navbar({ menuOpen, setMenuOpen }) {
 
     return (
         <nav className="fixed top-0 w-full z-40 backdrop-blur-lg border-b border-white/10 grid grid-cols-12 h-16 px-2">
-            <div className="col-start-3 py-4 col-span-8">
+            <div className="col-span-10 col-start-2 lg:col-start-3 py-4 lg:col-span-8">
                 <div className="flex justify-between items-center">
 
                 
