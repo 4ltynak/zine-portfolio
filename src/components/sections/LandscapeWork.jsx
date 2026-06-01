@@ -36,17 +36,17 @@ className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflo
     </a>
 </div>
     {/* TEXT CONTENT */}
-    <div className="col-span-12 grid gap-4 lg:col-span-3 lg:col-start-3 lg:row-start-3 text-md text-color/70 font-news-cycle">
-        <p className="font-semibold text-color">{activeProject.client}</p>
-        <h2 className="text-4xl xl:text-left h-10 flex items-center font-instrument-serif">
-            {activeProject.title.toUpperCase()}
+    <div className="col-span-12 grid gap-2 lg:col-span-3 lg:col-start-3 lg:row-start-3 text-md text-color/70 font-news-cycle">
+        <p className="font-semibold text-color">{activeProject.client || ""}</p>
+        <h2 className="text-3xl xl:text-left h-10 flex items-center font-instrument-serif">
+            {activeProject.title ? activeProject.title.toUpperCase() : ""}
         </h2>
     </div>
-    <div className="col-span-12 lg:col-span-4 lg:col-start-7 lg:row-start-3">
-        <p className="text-lg text-color/70 font-news-cycle text-justify overflow-hidden lg:pt-8 lg:leading-snug">
-            {activeProject.snippet}
-        </p>
-    </div>
+<div className="col-span-12 lg:col-span-4 lg:col-start-7 lg:row-start-3 self-end">
+    <p className="text-md text-color/70 font-news-cycle text-justify overflow-hidden lg:leading-tight">
+        {activeProject.snippet || ""}
+    </p>
+</div>
 
     {/* GALLERY AREA */}
     <div 

@@ -38,36 +38,36 @@ export default function ReelsWork() {
 <section id="reels-work" 
 className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflow-hidden select-none items-center h-screen grid-rows-12 gap-4">
     <div className="hidden lg:flex col-span-8 col-start-3 row-start-2 justify-between self-start">
-    <a href="#landscape-work" className="hover:underline">
-        <h3 className="text-lg text-color/70 font-news-cycle">01 / Landscape</h3>
-    </a>
-    <a href="#reels-work" className="hover:underline">
-        <h3 className="text-lg text-color/70 font-news-cycle">02 / Reels</h3>
-    </a>
-    <a href="#stills-work" className="hover:underline">
-        <h3 className="text-lg text-color/70 font-news-cycle">03 / Stills</h3>
-    </a>
-</div>
+        <a href="#landscape-work" className="hover:underline">
+            <h3 className="text-lg text-color/70 font-news-cycle">01 / Landscape</h3>
+        </a>
+        <a href="#reels-work" className="hover:underline">
+            <h3 className="text-lg text-color/70 font-news-cycle">02 / Reels</h3>
+        </a>
+        <a href="#stills-work" className="hover:underline">
+            <h3 className="text-lg text-color/70 font-news-cycle">03 / Stills</h3>
+        </a>
+    </div>
+
     {/* TEXT CONTENT */}
-    <div className="col-span-12 grid gap-4 lg:col-span-3 lg:col-start-3 lg:row-start-3 text-md text-color/70 font-news-cycle">
+    <div className="col-span-12 grid gap-2 lg:col-span-3 lg:col-start-3 lg:row-start-3 text-md text-color/70 font-news-cycle self-start">
         <p className="font-semibold text-color">{activeProject.client || ""}</p>
-        <h2 className="text-4xl xl:text-left h-10 flex items-center font-instrument-serif">
+        <h2 className="text-3xl xl:text-left h-10 flex items-center font-instrument-serif">
             {activeProject.title ? activeProject.title.toUpperCase() : ""}
         </h2>
     </div>
-    <div className="col-span-12 lg:col-span-4 lg:col-start-7 lg:row-start-3">
-        <p className="text-lg text-color/70 font-news-cycle text-justify overflow-hidden lg:pt-8 lg:leading-snug">
+    <div className="col-span-12 lg:col-span-4 lg:col-start-7 lg:row-start-3 self-start">
+        <p className="text-md text-color/70 font-news-cycle text-justify overflow-hidden lg:leading-tight">
             {activeProject.snippet || ""}
         </p>
     </div>
 
     {/* GALLERY AREA */}
     <div 
-    id="custom-controls-gallery" 
-    className="col-start-3 col-span-8 row-start-4 row-span-7 w-full h-full relative" 
-    data-carousel="static"
+        id="custom-controls-gallery" 
+        className="col-start-3 col-span-8 row-start-4 row-span-7 w-full h-full relative" 
+        data-carousel="static"
     >
-
         {/* DESKTOP: 3 Side-by-Side */}
         <div className="hidden lg:grid grid-cols-3 gap-4 relative w-full h-full overflow-hidden rounded-lg">
             {getDesktopIndices().map((index) => {
@@ -75,13 +75,18 @@ className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflo
                 if (!project) return null;
                 return (
                     <div 
-                        key={`desktop-${index}`}
+                        key={`desktop-${project.url || index}`}
                         className="w-full h-full duration-500 ease-in-out cursor-pointer grayscale hover:grayscale-0 transition-all"
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
                         onClick={() => setCurrentIndex(index)}
                     >
-                        <video controls className="w-full h-full rounded-sm shadow-lg object-cover object-center bg-black">
+                        <video 
+                            key={project.url} // Prevents element recycling glitch on slide transition
+                            controls 
+                            preload="auto" 
+                            className="w-full h-full rounded-sm shadow-lg object-cover object-center bg-black"
+                        >
                             <source src={project.url} type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
@@ -90,24 +95,33 @@ className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflo
             })}
         </div>
 
-        {/* MOBILE: Original 1 Video Layout */}
+        {/* MOBILE: Preloaded Stream Layout */}
         <div className="lg:hidden relative w-full h-full overflow-hidden rounded-lg">
-            {reelsProjects[currentIndex] && (
-                <div className="duration-700 ease-in-out w-full h-full" data-carousel-item="active" key={reelsProjects[currentIndex].url}>
-                    <video controls className="w-full h-full rounded-sm shadow-lg object-cover object-center bg-black">
-                        <source src={reelsProjects[currentIndex].url} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            )}
+            {reelsProjects.map((project, index) => {
+                const isActive = index === currentIndex;
+                return (
+                    <div 
+                        key={`mobile-${project.url || index}`}
+                        className={`duration-700 ease-in-out w-full h-full ${isActive ? "block" : "hidden"}`} 
+                        data-carousel-item={isActive ? "active" : ""}
+                    >
+                        <video 
+                            controls 
+                            preload="auto" // Forces initial background data stream caching
+                            className="w-full h-full rounded-sm shadow-lg object-cover object-center bg-black"
+                        >
+                            <source src={project.url} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                );
+            })}
         </div>
     </div>
 
     {/* COMBINED CONTROLS AND BORDER CONTAINER */}
-    {/* Spans across columns 3 to 10 right under your gallery */}
     <div className="col-start-3 col-span-8 row-start-11 w-full flex flex-col pt-4 border-t border-color/20 z-10">
         <div className="flex justify-between items-center w-full">
-            
             <button 
                 className="text-lg text-color/70 font-news-cycle text-left cursor-pointer hover:underline" 
                 onClick={handlePrev}
@@ -115,18 +129,15 @@ className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflo
                 &lt; Previous 
             </button>
 
-            {/* Optional page marker if you decide to add it later */}
-            {/* <p className="text-lg text-color/70 font-news-cycle text-center">02 / Reels Work</p> */}
-
             <button 
                 className="text-lg text-color/70 font-news-cycle text-right cursor-pointer hover:underline" 
                 onClick={handleNext}
             >
                 Next &gt; 
             </button>
-            
         </div>
     </div>
+
 </section>
     );
 }
