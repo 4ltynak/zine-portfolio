@@ -7,7 +7,8 @@ export default function ReelsWork() {
     
     const [currentIndex, setCurrentIndex] = useState(0);
     const [hoveredIndex, setHoveredIndex] = useState(null);
-    
+    const [playingIndex, setPlayingIndex] = useState(null);
+
     const activeProject = reelsProjects[hoveredIndex !== null ? hoveredIndex : currentIndex] || {};
     
     const handleNext = () => {
@@ -35,98 +36,122 @@ export default function ReelsWork() {
     };
         
     return (
-<section id="reels-work" 
-className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflow-hidden select-none items-center h-screen grid-rows-12 gap-4">
-    <div className="hidden lg:flex col-span-8 col-start-3 row-start-2 justify-between self-start">
-    <a href="#landscape-work" className="hover:underline">
-        <h3 className="text-lg text-color/70 font-news-cycle">01 / Landscape</h3>
-    </a>
-    <a href="#reels-work" className="hover:underline">
-        <h3 className="text-lg text-color/70 font-news-cycle">02 / Reels</h3>
-    </a>
-    <a href="#stills-work" className="hover:underline">
-        <h3 className="text-lg text-color/70 font-news-cycle">03 / Stills</h3>
-    </a>
-</div>
-    {/* TEXT CONTENT */}
-    <div className="col-span-12 grid gap-4 lg:col-span-3 lg:col-start-3 lg:row-start-3 text-md text-color/70 font-news-cycle">
-        <p className="font-semibold text-color">{activeProject.client || ""}</p>
-        <h2 className="text-4xl xl:text-left h-10 flex items-center font-instrument-serif">
-            {activeProject.title ? activeProject.title.toUpperCase() : ""}
-        </h2>
-    </div>
-    <div className="col-span-12 lg:col-span-4 lg:col-start-7 lg:row-start-3">
-        <p className="text-lg text-color/70 font-news-cycle text-justify overflow-hidden lg:pt-8 lg:leading-snug">
-            {activeProject.snippet || ""}
-        </p>
-    </div>
+        <section id="reels-work" className="snap-start col-span-12 grid grid-cols-12 md:grid-cols-subgrid overflow-hidden select-none items-center h-screen grid-rows-12 gap-4">
+            
+            {/* TOP NAVIGATION */}
+            <div className="hidden lg:flex col-span-8 col-start-3 row-start-2 justify-between self-start">
+                <a href="#landscape-work" className="hover:underline">
+                    <h3 className="text-lg text-color/70 font-news-cycle">01 / Landscape</h3>
+                </a>
+                <a href="#reels-work" className="hover:underline">
+                    <h3 className="text-lg text-color/70 font-news-cycle">02 / Reels</h3>
+                </a>
+                <a href="#stills-work" className="hover:underline">
+                    <h3 className="text-lg text-color/70 font-news-cycle">03 / Stills</h3>
+                </a>
+            </div>
 
-    {/* GALLERY AREA */}
-    <div 
-    id="custom-controls-gallery" 
-    className="col-start-3 col-span-8 row-start-4 row-span-7 w-full h-full relative" 
-    data-carousel="static"
-    >
+            {/* TEXT CONTENT - LEFT SIDE */}
+            <div className="mt-8 lg:mt-0 col-start-2 row-start-2 col-span-10 grid gap-2 lg:gap-4 lg:col-span-3 lg:col-start-3 lg:row-start-3 text-md text-color/70 font-news-cycle leading-0">
+                <p className="font-semibold text-color ">{activeProject.client || ""}</p>
+                <h2 className="text-3xl lg:text-4xl lg:text-left h-10 flex items-center font-instrument-serif">
+                    {activeProject.title ? activeProject.title.toUpperCase() : ""}
+                </h2>
+            </div>
 
-        {/* DESKTOP: 3 Side-by-Side */}
-        <div className="hidden lg:grid grid-cols-3 gap-4 relative w-full h-full overflow-hidden rounded-lg">
-            {getDesktopIndices().map((index) => {
-                const project = reelsProjects[index];
-                if (!project) return null;
-                return (
-                    <div 
-                        key={`desktop-${index}`}
-                        className="w-full h-full duration-500 ease-in-out cursor-pointer grayscale hover:grayscale-0 transition-all"
-                        onMouseEnter={() => setHoveredIndex(index)}
-                        onMouseLeave={() => setHoveredIndex(null)}
-                        onClick={() => setCurrentIndex(index)}
-                    >
-                        <video controls className="w-full h-full rounded-sm shadow-lg object-cover object-center bg-black">
-                            <source src={project.url} type="video/mp4" />
+            {/* TEXT CONTENT - RIGHT SIDE */}
+            <div className="col-span-10 col-start-2 row-start-3 lg:col-span-4 lg:col-start-7 lg:row-start-3 h-full">
+                <p className="lg:text-lg text-color/70 font-news-cycle text-justify overflow-hidden leading-tight text-md lg:leading-snug line-clamp-3">
+                    {activeProject.snippet || ""}
+                </p>
+            </div>
+
+            {/* GALLERY AREA */}
+            {/* LAYOUT FIX: Removed the subgrid classes here so the desktop 3-column layout can expand horizontally */}
+            <div 
+                id="custom-controls-gallery" 
+                className="col-span-10 col-start-2 row-start-4 row-span-7 lg:col-start-3 lg:col-span-8 lg:row-start-4 lg:row-span-7 w-full h-full relative" 
+                data-carousel="static"
+            >
+                
+                {/* DESKTOP GALLERY */}
+                <div className="hidden lg:grid grid-cols-3 gap-4 relative w-full h-full overflow-hidden rounded-lg">
+                    {getDesktopIndices().map((index) => {
+                        const project = reelsProjects[index];
+                        if (!project) return null;
+                        const isPlaying = playingIndex === index;
+
+                        return (
+                            <div 
+                                key={`desktop-${index}`}
+                                className={`relative overflow-hidden w-full h-full duration-500 ease-in-out cursor-pointer transition-all ${
+                                    isPlaying ? 'grayscale-0' : 'grayscale hover:grayscale-0'
+                                }`}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                                onClick={() => setCurrentIndex(index)}
+                            >
+                                <video 
+                                    controls 
+                                    playsInline 
+                                    preload="auto" 
+                                    src={project.url} // Fixed: Kept direct src mapping for reactive video switches
+                                    poster={project.thumbnail || project.poster || ""}
+                                    className="absolute inset-0 w-full h-full rounded-sm shadow-lg object-cover object-center bg-black"
+                                    onPlay={() => setPlayingIndex(index)}
+                                    onPause={() => setPlayingIndex(null)}
+                                    onEnded={() => setPlayingIndex(null)}
+                                >
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* MOBILE GALLERY */}
+                <div className="lg:hidden w-full h-full flex items-center justify-center rounded-lg overflow-hidden bg-black">
+                    {reelsProjects[currentIndex] && (
+                        <video 
+                            controls 
+                            playsInline
+                            preload="auto"
+                            src={reelsProjects[currentIndex].url} // Fixed: Kept direct src mapping for reactive video switches
+                            poster={reelsProjects[currentIndex].thumbnail || reelsProjects[currentIndex].poster || ""}
+                            className={`w-full h-full object-cover rounded-sm shadow-lg transition-all duration-700 ease-in-out ${
+                                playingIndex === currentIndex ? 'grayscale-0' : 'grayscale'
+                            }`}
+                            onPlay={() => setPlayingIndex(currentIndex)}
+                            onPause={() => setPlayingIndex(null)}
+                            onEnded={() => setPlayingIndex(null)}
+                            key={reelsProjects[currentIndex].url}
+                        >
                             Your browser does not support the video tag.
                         </video>
-                    </div>
-                );
-            })}
-        </div>
-
-        {/* MOBILE: Original 1 Video Layout */}
-        <div className="lg:hidden relative w-full h-full overflow-hidden rounded-lg">
-            {reelsProjects[currentIndex] && (
-                <div className="duration-700 ease-in-out w-full h-full" data-carousel-item="active" key={reelsProjects[currentIndex].url}>
-                    <video controls className="w-full h-full rounded-sm shadow-lg object-cover object-center bg-black">
-                        <source src={reelsProjects[currentIndex].url} type="video/mp4" />
-                        Your browser does not support the video tag.
-                    </video>
+                    )}
                 </div>
-            )}
-        </div>
-    </div>
 
-    {/* COMBINED CONTROLS AND BORDER CONTAINER */}
-    {/* Spans across columns 3 to 10 right under your gallery */}
-    <div className="col-start-3 col-span-8 row-start-11 w-full flex flex-col pt-4 border-t border-color/20 z-10">
-        <div className="flex justify-between items-center w-full">
-            
-            <button 
-                className="text-lg text-color/70 font-news-cycle text-left cursor-pointer hover:underline" 
-                onClick={handlePrev}
-            >
-                &lt; Previous 
-            </button>
+            </div>
 
-            {/* Optional page marker if you decide to add it later */}
-            {/* <p className="text-lg text-color/70 font-news-cycle text-center">02 / Reels Work</p> */}
+            {/* COMBINED CONTROLS AND BORDER CONTAINER */}
+            <div className="col-start-2 col-span-10 row-start-11 lg:col-start-3 lg:col-span-8 lg:row-start-11 w-full flex flex-col pt-4 border-t border-color/20 z-10">
+                <div className="flex justify-between items-center w-full">
+                    <button 
+                        className="text-lg text-color/70 font-news-cycle text-left cursor-pointer hover:underline" 
+                        onClick={handlePrev}
+                    >
+                        &lt; Previous 
+                    </button>
 
-            <button 
-                className="text-lg text-color/70 font-news-cycle text-right cursor-pointer hover:underline" 
-                onClick={handleNext}
-            >
-                Next &gt; 
-            </button>
-            
-        </div>
-    </div>
-</section>
+                    <button 
+                        className="text-lg text-color/70 font-news-cycle text-right cursor-pointer hover:underline" 
+                        onClick={handleNext}
+                    >
+                        Next &gt; 
+                    </button>
+                </div>
+            </div>
+
+        </section>
     );
 }
